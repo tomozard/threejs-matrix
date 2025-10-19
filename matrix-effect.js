@@ -124,19 +124,34 @@ class MatrixEffect {
 
     createCharacter(x, y) {
         const char = this.matrixChars[Math.floor(Math.random() * this.matrixChars.length)];
+        
+        // Weighted random font size (smaller sizes more frequent)
+        // 20px: 40%, 21px: 25%, 22px: 15%, 23px: 10%, 24px: 6%, 25px: 3%, 26px: 1%
+        const rand = Math.random();
+        let fontSize;
+        if (rand < 0.4) fontSize = 20;
+        else if (rand < 0.65) fontSize = 21;
+        else if (rand < 0.8) fontSize = 22;
+        else if (rand < 0.9) fontSize = 23;
+        else if (rand < 0.96) fontSize = 24;
+        else if (rand < 0.99) fontSize = 25;
+        else fontSize = 26;
+        
+        const canvasSize = Math.max(32, fontSize + 8); // Adjust canvas size based on font
+        const planeSize = fontSize + 4; // Adjust plane size based on font
 
         // Create canvas for text texture
         const canvas = document.createElement('canvas');
         const context = canvas.getContext('2d');
-        canvas.width = 32;
-        canvas.height = 32;
+        canvas.width = canvasSize;
+        canvas.height = canvasSize;
 
         // Draw character
         context.fillStyle = '#00ff00';
-        context.font = '20px monospace';
+        context.font = `${fontSize}px monospace`;
         context.textAlign = 'center';
         context.textBaseline = 'middle';
-        context.fillText(char, 16, 16);
+        context.fillText(char, canvasSize / 2, canvasSize / 2);
 
         // Create texture and material
         const texture = new THREE.CanvasTexture(canvas);
@@ -146,8 +161,8 @@ class MatrixEffect {
             opacity: 1.0
         });
 
-        // Create geometry and mesh
-        const geometry = new THREE.PlaneGeometry(20, 20);
+        // Create geometry and mesh with variable size
+        const geometry = new THREE.PlaneGeometry(planeSize, planeSize);
         const mesh = new THREE.Mesh(geometry, material);
 
         mesh.position.set(x, y, 0);
