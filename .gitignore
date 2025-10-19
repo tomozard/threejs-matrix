@@ -38,3 +38,7 @@ next-env.d.ts
 
 # OS
 Thumbs.db
+
+# Package manager lock files
+package-lock.json
+yarn.lock
