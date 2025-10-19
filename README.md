@@ -1,71 +1,50 @@
-# Matrix Effect - Multi-Language
+# Matrix Effect - Next.js
 
-เอฟเฟกต์พื้นหลังแบบ Matrix ที่สร้างด้วย Three.js โดยมีตัวอักษรหลากหลายภาษาสีเขียวไหลลงมาเหมือนในหนัง The Matrix
+A Matrix-style digital rain effect built with Next.js, React, and Three.js featuring multi-language characters.
 
-## คุณสมบัติ
+## Features
 
-- ✨ ตัวอักษรหลากหลายภาษา: ไทย 🇹🇭 ญี่ปุ่น 🇯🇵 เกาหลี 🇰🇷 อาหรับ 🇸🇦 รัสเซีย 🇷🇺 ฝรั่งเศส 🇫🇷 อังกฤษ 🇺🇸
-- 🎨 สีเขียวแบบ Matrix แท้ๆ
-- 💫 เอฟเฟกต์การจางหายแบบสมจริง
-- 🎮 ควบคุมความเร็วได้
-- 📱 รองรับ Responsive Design
-- 📊 แสดงสถิติแบบเรียลไทม์
+- Multi-language character support (Thai, Japanese, Korean, Arabic, Russian, French, English)
+- Interactive controls (mouse click, keyboard shortcuts)
+- Real-time statistics display
+- Responsive design
+- Smooth animations with Three.js
 
-## การใช้งาน
+## Controls
 
-1. เปิดไฟล์ `index.html` ในเบราว์เซอร์
-2. เพลิดเพลินกับเอฟเฟกต์ Matrix!
+- **Mouse Click**: Toggle between normal (1x) and fast (3x) speed
+- **Space**: Pause/Resume animation
+- **Arrow Up**: Increase speed
+- **Arrow Down**: Decrease speed
 
-## การควบคุม
+## Getting Started
 
-- **คลิกเมาส์**: เปลี่ยนความเร็วระหว่าง ปกติ และ เร็ว
-- **Space**: หยุด/เล่น
-- **ลูกศรขึ้น**: เพิ่มความเร็ว
-- **ลูกศรลง**: ลดความเร็ว
-
-## โครงสร้างไฟล์
-
-```
-matrix-effect/
-├── index.html          # หน้าเว็บหลัก
-├── matrix-effect.js    # โค้ด Matrix Effect
-└── README.md          # คู่มือการใช้งาน
+1. Install dependencies:
+```bash
+npm install
 ```
 
-## เทคโนโลยีที่ใช้
+2. Run the development server:
+```bash
+npm run dev
+```
 
-- **Three.js**: สำหรับการเรนเดอร์ 3D
-- **Canvas API**: สำหรับสร้างเท็กซ์เจอร์ตัวอักษร
-- **JavaScript ES6+**: สำหรับลอจิกหลัก
+3. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-## ภาษาที่รองรับ
+## Languages Supported
 
-Matrix Effect นี้รองรับตัวอักษรจากหลายภาษา:
+- 🇹🇭 Thai
+- 🇯🇵 Japanese (Hiragana & Katakana)
+- 🇰🇷 Korean (Hangul)
+- 🇸🇦 Arabic
+- 🇷🇺 Russian (Cyrillic)
+- 🇫🇷 French (with accents)
+- 🇺🇸 English
+- Numbers and symbols
 
-- **ไทย**: ก ข ค ง จ ฉ ช ซ ญ ด ต ถ ท ธ น บ ป ผ ฝ พ ฟ ภ ม ย ร ล ว ศ ษ ส ห ฬ อ ฮ
-- **ญี่ปุ่น**: Katakana (ア イ ウ エ オ...) และ Hiragana (あ い う え お...)
-- **เกาหลี**: Hangul (ㄱ ㄴ ㄷ ㄹ ㅁ... และ 가 나 다 라 마...)
-- **อาหรับ**: ا ب ت ث ج ح خ د ذ ر ز س ش ص ض ط ظ ع غ ف ق ك ل م ن ه و ي
-- **รัสเซีย**: А Б В Г Д Е Ё Ж З И Й К Л М Н О П Р С Т У Ф Х Ц Ч Ш Щ Ъ Ы Ь Э Ю Я
-- **ฝรั่งเศส**: À Á Â Ã Ä Å Æ Ç È É Ê Ë... และตัวพิมพ์เล็ก
-- **อังกฤษ**: A-Z และ a-z
-- **สัญลักษณ์**: ตัวเลข 0-9 และสัญลักษณ์พิเศษต่างๆ
+## Build
 
-รวมทั้งหมด **300+ ตัวอักษร** จาก 7 ภาษาหลัก!
-
-## การปรับแต่ง
-
-คุณสามารถปรับแต่งได้ใน `matrix-effect.js`:
-
-- `matrixChars`: เปลี่ยนตัวอักษรที่ใช้ (ปัจจุบัน 300+ ตัวอักษร)
-- `columnCount`: จำนวนคอลัมน์ (ปัจจุบัน width/15)
-- `fadeSpeed`: ความเร็วการจาง (0.008+0.002)
-- `fallSpeed`: ความเร็วการตก (4+3)
-- ความถี่การสร้าง: 200+50ms
-
-## Browser Support
-
-- Chrome 60+
-- Firefox 55+
-- Safari 12+
-- Edge 79+
+```bash
+npm run build
+npm start
+```

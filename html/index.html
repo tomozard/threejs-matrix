@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +13,7 @@
             background: #000;
             font-family: 'Courier New', monospace;
         }
-        
+
         #container {
             position: fixed;
             top: 0;
@@ -20,7 +21,7 @@
             width: 100%;
             height: 100%;
         }
-        
+
         #info {
             position: absolute;
             top: 10px;
@@ -31,7 +32,7 @@
             text-shadow: 0 0 5px #00ff00;
             line-height: 1.4;
         }
-        
+
         #stats {
             position: absolute;
             top: 10px;
@@ -45,9 +46,12 @@
         }
     </style>
 </head>
+
 <body>
     <div id="container"></div>
-    <div id="info">Matrix Effect - Multi-Language<br/>กดเมาส์เพื่อเปลี่ยนความเร็ว<br/>Space = หยุด/เล่น<br/>↑↓ = ปรับความเร็ว<br/><small>ภาษา: ไทย 🇹🇭 日本 🇯🇵 한국 🇰🇷 العربية 🇸🇦 Русский 🇷🇺 Français 🇫🇷 English 🇺🇸</small></div>
+    <div id="info">Matrix Effect - Multi-Language<br />กดเมาส์เพื่อเปลี่ยนความเร็ว<br />Space = หยุด/เล่น<br />↑↓ =
+        ปรับความเร็ว<br /><small>ภาษา: ไทย 🇹🇭 日本 🇯🇵 한국 🇰🇷 العربية 🇸🇦 Русский 🇷🇺 Français 🇫🇷 English
+            🇺🇸</small></div>
     <div id="stats">
         <div>คอลัมน์: <span id="columnCount">-</span></div>
         <div>ตัวอักษร: <span id="charCount">-</span></div>
@@ -55,8 +59,9 @@
         <div>ความเร็ว: <span id="speedValue">1.0</span>x</div>
         <div>FPS: <span id="fpsValue">-</span></div>
     </div>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="matrix-effect.js"></script>
 </body>
+
 </html>
