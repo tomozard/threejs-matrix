@@ -301,9 +301,6 @@ export default function MatrixEffect() {
 
     const handleKeyDown = (event: KeyboardEvent) => {
       switch (event.code) {
-        case 'Space':
-          speedMultiplierRef.current = speedMultiplierRef.current === 0 ? 1 : 0
-          break
         case 'ArrowUp':
           speedMultiplierRef.current = Math.min(5, speedMultiplierRef.current + 0.5)
           updateStats()
@@ -353,7 +350,7 @@ export default function MatrixEffect() {
       <div id="info">
         Matrix Effect - Multi-Language<br />
         กดเมาส์เพื่อเปลี่ยนความเร็ว<br />
-        Space = หยุด/เล่น<br />
+        Space = Voice Assistant<br />
         ↑↓ = ปรับความเร็ว
       </div>
       <div id="stats">
