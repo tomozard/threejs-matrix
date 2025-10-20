@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect, useCallback } from 'react'
+import { useMatrixEffectTrigger } from '../hooks/useMatrixEffect'
 
 interface ConversationTurn {
   role: 'user' | 'assistant'
@@ -26,6 +27,9 @@ export default function VoiceAssistant({ className = '', showUI = false }: Voice
   const [isExpanded, setIsExpanded] = useState(false)
   const [isMinimized, setIsMinimized] = useState(false)
 
+  // Matrix effect triggers
+  const { triggerRecordingMode, triggerAIResponse, resetToNormal } = useMatrixEffectTrigger()
+
   const mediaRecorderRef = useRef<MediaRecorder | null>(null)
   const audioChunksRef = useRef<Blob[]>([])
   const streamRef = useRef<MediaStream | null>(null)
@@ -50,22 +54,32 @@ export default function VoiceAssistant({ className = '', showUI = false }: Voice
 
       audio.onloadstart = () => console.log('🎵 Audio loading...')
       audio.oncanplay = () => console.log('✅ Audio ready to play')
-      audio.onplay = () => console.log('▶️ Audio playback started')
+      audio.onplay = () => {
+        console.log('▶️ Audio playback started')
+        // Trigger matrix effect when audio starts playing
+        triggerAIResponse()
+      }
       audio.onended = () => {
         console.log('⏹️ Audio playback finished')
         URL.revokeObjectURL(audioUrl)
+        // Reset matrix effect when audio ends
+        resetToNormal()
       }
       audio.onerror = (error) => {
         console.error('❌ Audio playback error:', error)
         URL.revokeObjectURL(audioUrl)
+        // Reset matrix effect on error
+        resetToNormal()
       }
 
       await audio.play()
 
     } catch (error) {
       console.error('❌ Failed to play audio:', error)
+      // Reset matrix effect on error
+      resetToNormal()
     }
-  }, [])
+  }, [triggerAIResponse, resetToNormal])
 
   // Start recording
   const startRecording = useCallback(async () => {
@@ -122,6 +136,10 @@ export default function VoiceAssistant({ className = '', showUI = false }: Voice
 
       mediaRecorder.start(100) // Collect data every 100ms
       setIsRecording(true)
+
+      // Trigger matrix effect for recording mode
+      triggerRecordingMode()
+
       console.log('✅ Recording started')
 
     } catch (error) {
@@ -144,6 +162,10 @@ export default function VoiceAssistant({ className = '', showUI = false }: Voice
     }
 
     setIsRecording(false)
+
+    // Reset matrix effect to normal when recording stops
+    resetToNormal()
+
     console.log('✅ Recording stopped')
   }, [isRecording])
 

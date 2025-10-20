@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
+import { useMatrixEffectControl } from '../hooks/useMatrixEffect'
 
 interface Column {
   x: number
@@ -23,11 +24,13 @@ export default function MatrixEffect() {
   const cameraRef = useRef<THREE.OrthographicCamera | null>(null)
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null)
   const columnsRef = useRef<Column[]>([])
-  const speedMultiplierRef = useRef(1)
   const lastTimeRef = useRef(0)
   const frameCountRef = useRef(0)
   const fpsRef = useRef(0)
   const animationIdRef = useRef<number>()
+
+  // Use matrix effect control hook
+  const { speedMultiplierRef, registerControl, setSpeed } = useMatrixEffectControl()
 
   const matrixChars = [
     // Japanese Katakana
@@ -279,6 +282,9 @@ export default function MatrixEffect() {
   }
 
   useEffect(() => {
+    // Register matrix effect control
+    const speedRef = registerControl()
+    
     init()
     animate()
 
@@ -294,26 +300,24 @@ export default function MatrixEffect() {
       }
     }
 
-    const handleClick = () => {
-      speedMultiplierRef.current = speedMultiplierRef.current === 1 ? 3 : 1
-      updateStats()
-    }
+
 
     const handleKeyDown = (event: KeyboardEvent) => {
       switch (event.code) {
         case 'ArrowUp':
-          speedMultiplierRef.current = Math.min(5, speedMultiplierRef.current + 0.5)
+          const newSpeedUp = Math.min(5, speedMultiplierRef.current + 0.5)
+          setSpeed(newSpeedUp)
           updateStats()
           break
         case 'ArrowDown':
-          speedMultiplierRef.current = Math.max(0.1, speedMultiplierRef.current - 0.5)
+          const newSpeedDown = Math.max(0.1, speedMultiplierRef.current - 0.5)
+          setSpeed(newSpeedDown)
           updateStats()
           break
       }
     }
 
     window.addEventListener('resize', handleResize)
-    document.addEventListener('click', handleClick)
     document.addEventListener('keydown', handleKeyDown)
 
     return () => {
@@ -321,7 +325,6 @@ export default function MatrixEffect() {
         cancelAnimationFrame(animationIdRef.current)
       }
       window.removeEventListener('resize', handleResize)
-      document.removeEventListener('click', handleClick)
       document.removeEventListener('keydown', handleKeyDown)
 
       // Cleanup Three.js objects
@@ -349,7 +352,6 @@ export default function MatrixEffect() {
       <div ref={containerRef} id="container" />
       <div id="info">
         Matrix Effect - Multi-Language<br />
-        กดเมาส์เพื่อเปลี่ยนความเร็ว<br />
         Space = Voice Assistant<br />
         ↑↓ = ปรับความเร็ว
       </div>
