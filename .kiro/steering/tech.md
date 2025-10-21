@@ -11,6 +11,14 @@
 - **WebGL** - Hardware-accelerated graphics rendering
 - **Canvas API** - Dynamic text texture generation
 
+## Voice & AI Integration
+- **WebSocket API** - Real-time communication with voice services
+- **Web Audio API** - Audio recording and playback
+- **MediaRecorder API** - Audio capture and processing
+- **Speech-to-Text** - Voice transcription services
+- **Text-to-Speech** - Audio response generation
+- **LLM Integration** - AI conversation capabilities
+
 ## Development Tools
 - **ESLint** - Code linting with Next.js configuration
 - **TypeScript compiler** - Type checking and compilation
@@ -37,9 +45,18 @@ npm run lint         # Run ESLint for code quality checks
 - **next.config.js** - Next.js configuration with React strict mode
 - **tsconfig.json** - TypeScript configuration with strict settings and path aliases
 - **Path aliases** - `@/*` maps to project root for cleaner imports
+- **Environment variables** - Voice service URLs, audio settings, visual parameters
+
+## Voice Service Architecture
+- **WebSocket connections** - Real-time bidirectional communication
+- **Audio streaming** - Chunked audio data transmission
+- **State management** - Voice states (idle, recording, processing, playing)
+- **Error handling** - Connection recovery and user feedback
 
 ## Performance Considerations
-- Dynamic imports used for Three.js components to avoid SSR issues
+- Dynamic imports used for Three.js and voice components to avoid SSR issues
 - Canvas texture generation for character rendering
 - RequestAnimationFrame for smooth 60fps animations
 - Geometry and material disposal for memory management
+- Audio buffer management for low-latency voice interaction
+- WebSocket connection pooling and reconnection logic
